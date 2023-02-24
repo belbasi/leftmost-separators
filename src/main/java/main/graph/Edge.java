@@ -1,5 +1,4 @@
 package main.graph;
 
-public interface Edge {
-
+public abstract class Edge {
 }
