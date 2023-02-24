@@ -1,4 +1,4 @@
 package main.graph.Edge;
 
-public class DirectedEdge {
+public class DirectedEdge extends Edge{
 }

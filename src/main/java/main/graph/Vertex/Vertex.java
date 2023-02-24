@@ -2,6 +2,6 @@ package main.graph.Vertex;
 
 import java.util.HashSet;
 
-public class Vertex {
+public abstract class Vertex {
     HashSet<Vertex> neighbors;
 }
