@@ -1,5 +1,8 @@
 package main.graph;
 
+import main.graph.Edge.Edge;
+import main.graph.Vertex.Vertex;
+
 import java.util.HashSet;
 import java.util.List;
 

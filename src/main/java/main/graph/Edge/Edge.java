@@ -1,4 +1,4 @@
-package main.graph;
+package main.graph.Edge;
 
 public abstract class Edge {
 }

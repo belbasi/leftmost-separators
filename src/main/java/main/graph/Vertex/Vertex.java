@@ -1,4 +1,4 @@
-package main.graph;
+package main.graph.Vertex;
 
 import java.util.HashSet;
 
