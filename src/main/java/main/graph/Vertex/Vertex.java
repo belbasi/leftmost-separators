@@ -1,6 +1,7 @@
 package main.graph.Vertex;
 
 import java.util.HashSet;
+import java.util.Objects;
 
 public class Vertex {
     private final int id;
@@ -8,6 +9,7 @@ public class Vertex {
 
     public Vertex(int id) {
         this.id = id;
+        neighbors = new HashSet<>();
     }
 
     public void connectTo(Vertex v) {
@@ -21,4 +23,13 @@ public class Vertex {
     public HashSet<Vertex> getNeighbors() {
         return neighbors;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vertex vertex = (Vertex) o;
+        return id == vertex.id && Objects.equals(neighbors, vertex.neighbors);
+    }
+
 }

@@ -16,6 +16,8 @@ public class Edge {
                 secondVertex.getId());
         this.firstVertex = firstVertex;
         this.secondVertex = secondVertex;
+        firstVertex.getNeighbors().add(secondVertex);
+        secondVertex.getNeighbors().add(firstVertex);
     }
 
     public Vertex getFirstVertex() {
