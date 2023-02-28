@@ -7,7 +7,8 @@ import org.parboiled.common.Preconditions;
 
 import java.util.*;
 
-import static jdk.internal.org.jline.utils.Log.warn;
+import static org.apache.log4j.helpers.LogLog.warn;
+
 
 public class Graph {
     private Set<Vertex> vertices;

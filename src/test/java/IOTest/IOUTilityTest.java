@@ -9,7 +9,7 @@ public class IOUTilityTest {
 
     @Test
     public void testReadFromFileGivenEdges() {
-        final String path = "C:\\Users\\mahdi\\OneDrive\\Documents\\GitHub\\tree-decomposition\\src\\main\\resources\\configuration\\example-graph-with-edges.json";
+        final String path = "C:\\Users\\mahdi\\OneDrive\\Documents\\GitHub\\leftmost-separators\\src\\main\\resources\\configuration\\example-graph-with-edges.json";
         Assertions.assertEquals(1, readFromFile(path));
     }
 }
