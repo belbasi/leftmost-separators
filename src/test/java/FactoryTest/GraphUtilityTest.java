@@ -18,7 +18,7 @@ public class GraphUtilityTest {
         vertex1.getNeighbors().add(vertex0);
         vertex0.getNeighbors().add(vertex1);
 
-        final Vertex returnedVertex = getVertexById(lineGraph, 0);
+        final Vertex returnedVertex = getVertexById.apply(lineGraph, 0);
         Assertions.assertEquals(returnedVertex.getId(), vertex0.getId());
         Assertions.assertEquals(returnedVertex.getNeighbors().size(), vertex0.getNeighbors().size());
 

@@ -1,6 +1,5 @@
 package main.graph;
 
-import com.google.common.collect.ImmutableSet;
 import main.graph.Edge.Edge;
 import main.graph.Vertex.Vertex;
 import org.parboiled.common.Preconditions;
@@ -12,6 +11,7 @@ import static org.apache.log4j.helpers.LogLog.warn;
 
 public class Graph {
     private Set<Vertex> vertices;
+    private Set<Integer> vertexIds;
     private Set<Edge> edges;
     private Map<Vertex, Set<Vertex>> adjacencyMatrix;
 
@@ -20,12 +20,36 @@ public class Graph {
 
     public Graph(Set<Vertex> vertices) {
         this.vertices = vertices;
+        Preconditions.checkArgument(vertices.size() == new HashSet<>(vertices.stream()
+                .map(Vertex::getId)
+                .toList()).size());
+        vertexIds = new HashSet<>();
+        for (Vertex vertex : vertices) {
+            if (vertexIds.contains(vertex.getId())) {
+                warn(String.format("Two vertices with the same id (=%s) wanted to be added but were prevented.",
+                                vertex.getId()));
+            } else{
+                vertexIds.add(vertex.getId());
+            }
+        }
         adjacencyMatrix = new HashMap<>();
         warn("No edges are added and adjacency matrix is empty! Are you sure?");
     }
 
     public Graph(Set<Vertex> vertices, Set<Edge> edges) {
         this.vertices = vertices;
+        Preconditions.checkArgument(vertices.size() == new HashSet<>(vertices.stream()
+                .map(Vertex::getId)
+                .toList()).size());
+        vertexIds = new HashSet<>();
+        for (Vertex vertex : vertices) {
+            if (vertexIds.contains(vertex.getId())) {
+                warn(String.format("Two vertices with the same id (=%s) wanted to be added but were prevented.",
+                        vertex.getId()));
+            } else{
+                vertexIds.add(vertex.getId());
+            }
+        }
         this.edges = edges;
         produceAdjacencyMatrix();
     }
@@ -83,5 +107,11 @@ public class Graph {
 
     public Map<Vertex, Set<Vertex>> getAdjacencyMatrix() {
         return adjacencyMatrix;
+    }
+
+    public void printAdjacencyMatrix() {
+        for (Vertex vertex : vertices) {
+            System.out.println(vertex.getId() + ": " + vertex.getNeighbors());
+        }
     }
 }

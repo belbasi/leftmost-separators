@@ -2,6 +2,7 @@ package main;
 
 import main.graph.Edge.Edge;
 import main.graph.Graph;
+import main.graph.GraphUtility;
 import main.graph.Vertex.Vertex;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -11,14 +12,12 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
+
 
 public class IOUtility {
 
-    public static short readFromFile(String path) {
+    public static InputToLeftmostSeparators readFromFile(String path) {
         final JSONParser jsonParser = new JSONParser();
         try {
             final JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(path));
@@ -37,13 +36,24 @@ public class IOUtility {
                 graphEdges.add(actualEdge);
             });
             final Graph graph = new Graph(graphVertices, graphEdges);
-            Set<Vertex> xSub = new HashSet<>();
-            Set<Vertex> ySub = new HashSet<>();
             final JSONArray xLine = (JSONArray) jsonObject.get("X");
-//            xLine.forEach(x -> );
+            final Set<Vertex> xSub = fetchVerticesFromJSONArray(xLine, graph);
+            final JSONArray yLine = (JSONArray) jsonObject.get("Y");
+            final Set<Vertex> ySub = fetchVerticesFromJSONArray(yLine, graph);
+            return new InputToLeftmostSeparators(graph, xSub, ySub);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return 0;
+        return null;
+    }
+
+    private static Set<Vertex> fetchVerticesFromJSONArray(final JSONArray array, final Graph graph) {
+        return new HashSet<>(
+                array.stream()
+                        .map(Object::toString)
+                        .map(s -> Integer.parseInt((String) s))
+                        .map(id -> GraphUtility.getVertexById.apply(graph, (Integer) id))
+                        .toList()
+        );
     }
 }

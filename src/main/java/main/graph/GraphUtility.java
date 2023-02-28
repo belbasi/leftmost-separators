@@ -7,10 +7,9 @@ import java.util.stream.Collectors;
 
 public class GraphUtility {
 
-    public static Vertex getVertexById(final Graph graph, final int id) {
-        return graph.getVertices().stream()
-                .filter(vertex -> vertex.getId() == id)
-                .findAny()
-                .orElse(null);
-    }
+    public static BiFunction<Graph, Integer, Vertex> getVertexById =
+            (graph, id) -> graph.getVertices().stream()
+                    .filter(vertex -> vertex.getId() == id)
+                    .findAny()
+                    .orElse(null);
 }
