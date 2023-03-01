@@ -1,4 +1,4 @@
-package main.graph.Separator.Calculator;
+package main.graph;
 
 import main.graph.Graph;
 import main.graph.Vertex.Vertex;
